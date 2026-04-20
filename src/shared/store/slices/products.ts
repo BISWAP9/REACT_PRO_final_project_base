@@ -1,18 +1,18 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type ProductsState = {
-	sort: Sort;
-	page: number;
-	perPage: number;
-	searchText: string;
-};
+	sort: Sort
+	page: number
+	perPage: number
+	searchText: string
+}
 
 const initialState: ProductsState = {
 	searchText: '',
 	sort: 'newest',
 	page: 1,
 	perPage: 6,
-};
+}
 
 export const productsSlice = createSlice({
 	name: 'products',
@@ -39,7 +39,7 @@ export const productsSlice = createSlice({
 		getPerPage: (state: ProductsState) => state.perPage,
 		getProductsState: (state: ProductsState) => state,
 	},
-});
+})
 
-export const productsActions = { ...productsSlice.actions };
-export const productsSelectors = productsSlice.selectors;
+export const productsActions = { ...productsSlice.actions }
+export const productsSelectors = productsSlice.selectors

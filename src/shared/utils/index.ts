@@ -1,2 +1,2 @@
-export { isLiked } from './isLiked';
-export { getMessageFromError } from './getMessageFromError';
+export { isLiked } from './isLiked'
+export { getMessageFromError } from './getMessageFromError'

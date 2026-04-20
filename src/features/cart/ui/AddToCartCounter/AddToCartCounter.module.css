@@ -1,0 +1,36 @@
+.wrap {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.button-count {
+	display: inline-flex;
+	align-items: center;
+	height: 48px;
+	background-color: #fff;
+	border: 1px solid #cfd8dc;
+	border-radius: 100px;
+}
+
+.button-count__plus,
+.button-count__minus {
+	width: 40px;
+	height: 100%;
+	font-size: 24px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.button-count__num {
+	display: inline-block;
+	width: 30px;
+	font-weight: 700;
+	font-size: 21px;
+	line-height: 24px;
+	text-align: center;
+	border: none;
+}

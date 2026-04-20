@@ -9,6 +9,13 @@ module.exports = {
 		react: {
 			version: 'detect',
 		},
+		'import/resolver': {
+			typescript: {
+				alwaysTryTypes: true,
+				project: './tsconfig.json',
+			},
+			node: true,
+		},
 	},
 	extends: [
 		'plugin:@typescript-eslint/recommended',
@@ -23,7 +30,7 @@ module.exports = {
 		'plugin:eslint-comments/recommended',
 	],
 	rules: {
-		semi: [2, 'always'],
+		semi: [2, 'never'],
 		quotes: [2, 'single', { avoidEscape: true }],
 		'no-unused-vars': 'off',
 		'@typescript-eslint/no-unused-vars': ['error'],
@@ -32,5 +39,6 @@ module.exports = {
 		'react/jsx-uses-react': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'@typescript-eslint/no-empty-interface': 'off',
 	},
-};
+}

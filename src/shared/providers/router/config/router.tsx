@@ -1,14 +1,42 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { lazy, Suspense } from 'react'
+import { createBrowserRouter } from 'react-router-dom'
+import { Loader } from '@/shared/ui/Loader'
+import { App } from '@/app'
 
-import { HomePage } from '../../../../pages/HomePage';
-import { ProductPage } from '../../../../pages/ProductPage';
-import { NotFoundPage } from '../../../../pages/NotFoundPage';
-import { ProfilePage } from '../../../../pages/ProfilePage';
-import { FavoritesPage } from '../../../../pages/FavoritesPage';
-import { App } from '../../../../app';
-import { SignUpPage } from '../../../../pages/SignUpPage';
-import { SignInPage } from '../../../../pages/SignInPage';
-import { CartPage } from '../../../../pages/CartPage';
+const HomePage = lazy(() => import('@/pages/HomePage').then((m) => ({ default: m.HomePage })))
+const ProductPage = lazy(() =>
+	import('@/pages/ProductPage').then((m) => ({
+		default: m.ProductPage,
+	}))
+)
+const NotFoundPage = lazy(() =>
+	import('@/pages/NotFoundPage').then((m) => ({
+		default: m.NotFoundPage,
+	}))
+)
+const ProfilePage = lazy(() =>
+	import('@/pages/ProfilePage').then((m) => ({
+		default: m.ProfilePage,
+	}))
+)
+const FavoritesPage = lazy(() =>
+	import('@/pages/FavoritesPage').then((m) => ({
+		default: m.FavoritesPage,
+	}))
+)
+const SignUpPage = lazy(() =>
+	import('@/pages/SignUpPage').then((m) => ({
+		default: m.SignUpPage,
+	}))
+)
+const SignInPage = lazy(() =>
+	import('@/pages/SignInPage').then((m) => ({
+		default: m.SignInPage,
+	}))
+)
+const CartPage = lazy(() => import('@/pages/CartPage').then((m) => ({ default: m.CartPage })))
+
+const withSuspense = (node: React.ReactNode) => <Suspense fallback={<Loader />}>{node}</Suspense>
 
 export enum AppRoutes {
 	HOME = 'home',
@@ -30,47 +58,21 @@ export const RoutePath: Record<AppRoutes, `/${string}` | '*'> = {
 	[AppRoutes.SIGNUP]: '/signup',
 	[AppRoutes.SIGNIN]: '/signin',
 	[AppRoutes.NOT_FOUND]: '*',
-};
+}
 
 export const router = createBrowserRouter([
 	{
 		path: RoutePath.home,
 		element: <App />,
 		children: [
-			{
-				index: true,
-				element: <HomePage />,
-			},
-			{
-				path: RoutePath.favorites,
-				element: <FavoritesPage />,
-			},
-			{
-				path: RoutePath.products,
-				element: <ProductPage />,
-			},
-			{
-				path: RoutePath.profile,
-				element: <ProfilePage />,
-			},
-			{
-				path: RoutePath.cart,
-				element: <CartPage />,
-			},
-			{
-				path: RoutePath.signup,
-				element: <SignUpPage />,
-			},
-			{
-				path: RoutePath.signin,
-				element: <SignInPage />,
-			},
-
-			// last route
-			{
-				path: RoutePath.not_found,
-				element: <NotFoundPage />,
-			},
+			{ index: true, element: withSuspense(<HomePage />) },
+			{ path: RoutePath.favorites, element: withSuspense(<FavoritesPage />) },
+			{ path: RoutePath.products, element: withSuspense(<ProductPage />) },
+			{ path: RoutePath.profile, element: withSuspense(<ProfilePage />) },
+			{ path: RoutePath.cart, element: withSuspense(<CartPage />) },
+			{ path: RoutePath.signup, element: withSuspense(<SignUpPage />) },
+			{ path: RoutePath.signin, element: withSuspense(<SignInPage />) },
+			{ path: RoutePath.not_found, element: withSuspense(<NotFoundPage />) },
 		],
 	},
-]);
+])

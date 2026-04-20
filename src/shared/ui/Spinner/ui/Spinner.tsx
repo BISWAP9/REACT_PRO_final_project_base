@@ -1,5 +1,5 @@
-import classNames from 'classnames';
-import s from './Spinner.module.css';
+import classNames from 'classnames'
+import s from './Spinner.module.css'
 
 export const Spinner = () => {
 	return (
@@ -11,5 +11,5 @@ export const Spinner = () => {
 				<div></div>
 			</div>
 		</div>
-	);
-};
+	)
+}

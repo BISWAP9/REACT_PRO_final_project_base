@@ -1,1 +1,1 @@
-export { CartAmount } from './ui/CartAmount';
+export { CartAmount } from './ui/CartAmount'

@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import s from './NotFoudPage.module.css';
+import { Link } from 'react-router-dom'
+import s from './NotFoudPage.module.css'
 
 export const NotFoundPage = () => {
 	return (
@@ -9,5 +9,5 @@ export const NotFoundPage = () => {
 				<button>Перейти на главную</button>
 			</Link>
 		</div>
-	);
-};
+	)
+}

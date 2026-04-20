@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import Instagram from '../../../shared/assets/images/instagram.svg';
-import Telegram from '../../../shared/assets/images/telegram.svg';
-import Viber from '../../../shared/assets/images/viber.svg';
-import Vk from '../../../shared/assets/images/vk.svg';
-import Whatsapp from '../../../shared/assets/images/whatsapp.svg';
-import s from './Footer.module.css';
-import { Logo } from '../../../shared/ui/Logo';
+import classNames from 'classnames'
+import { ReactComponent as Instagram } from '@/shared/assets/images/instagram.svg'
+import { ReactComponent as Telegram } from '@/shared/assets/images/telegram.svg'
+import { ReactComponent as Viber } from '@/shared/assets/images/viber.svg'
+import { ReactComponent as Vk } from '@/shared/assets/images/vk.svg'
+import { ReactComponent as Whatsapp } from '@/shared/assets/images/whatsapp.svg'
+import s from './Footer.module.css'
+import { Logo } from '@/shared/ui/Logo'
 
 export const Footer = () => {
 	return (
@@ -14,9 +14,7 @@ export const Footer = () => {
 				<div className={s['footer__wrapper']}>
 					<div className={s['footer__col']}>
 						<Logo />
-						<p className={s['footer__copyright']}>
-							© «Интернет-магазин DogFood.ru»
-						</p>
+						<p className={s['footer__copyright']}>© «Интернет-магазин DogFood.ru»</p>
 					</div>
 					<div className={s['footer__col']}>
 						<nav className={s['menu-bottom']}>
@@ -65,28 +63,28 @@ export const Footer = () => {
 							</a>
 							<ul className={classNames(s['socials'])}>
 								<li>
-									<a className={s['socials__link']} href='/#'>
-										<img src={Telegram} alt='telegram' />
+									<a className={s['socials__link']} href='/#' aria-label='telegram'>
+										<Telegram />
 									</a>
 								</li>
 								<li>
-									<a className={s['socials__link']} href='/#'>
-										<img src={Whatsapp} alt='whatsapp' />
+									<a className={s['socials__link']} href='/#' aria-label='whatsapp'>
+										<Whatsapp />
 									</a>
 								</li>
 								<li>
-									<a className={s['socials__link']} href='/#'>
-										<img src={Viber} alt='viber' />
+									<a className={s['socials__link']} href='/#' aria-label='viber'>
+										<Viber />
 									</a>
 								</li>
 								<li>
-									<a className={s['socials__link']} href='/#'>
-										<img src={Instagram} alt='instagram' />
+									<a className={s['socials__link']} href='/#' aria-label='instagram'>
+										<Instagram />
 									</a>
 								</li>
 								<li>
-									<a className={s['socials__link']} href='/#'>
-										<img src={Vk} alt='vk' />
+									<a className={s['socials__link']} href='/#' aria-label='vk'>
+										<Vk />
 									</a>
 								</li>
 							</ul>
@@ -95,5 +93,5 @@ export const Footer = () => {
 				</div>
 			</div>
 		</footer>
-	);
-};
+	)
+}

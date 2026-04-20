@@ -1,16 +1,16 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { customBaseQuery } from './config';
-import { SignUpFormValues } from '../../../widgets/SignUpForm/utils/types';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import { customBaseQuery } from './config'
+import { SignUpFormValues } from '@/features/auth'
 
 type SignUpResponse = {
-	user: Pick<User, 'id' | 'email'>;
-	accessToken: Token['accessToken'];
-};
+	user: Pick<User, 'id' | 'email'>
+	accessToken: Token['accessToken']
+}
 
 type SignInResponse = {
-	user: Pick<User, 'id' | 'email'>;
-	accessToken: Token['accessToken'];
-};
+	user: Pick<User, 'id' | 'email'>
+	accessToken: Token['accessToken']
+}
 
 export const authApi = createApi({
 	reducerPath: 'authApi',
@@ -31,6 +31,6 @@ export const authApi = createApi({
 			}),
 		}),
 	}),
-});
+})
 
-export const { useSignInMutation, useSignUpMutation } = authApi;
+export const { useSignInMutation, useSignUpMutation } = authApi
