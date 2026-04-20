@@ -118,6 +118,7 @@ Hotspot нашёл через React DevTools Profiler на сценарии «л
 - `Card`, `LikeButton`, `Price`, `CartItem`, `CartCounter` обёрнуты в `React.memo`.
 - Селекторы возвращают примитивы (`getCartProductsCount`, `selectIsProductInCart`), а не массивы.
 - Все страницы — через `React.lazy` + `Suspense` с `Loader`.
+- `LoadMore` вынесен на отдельный хук `useLoadMoreState` с `selectFromResult` — компонент подписан только на `isFetching` / `hasProducts` / `isEndOfList`, а не на весь массив продуктов. Плюс у лайк-мутаций убран тег инвалидации `{ id: 'list' }`, чтобы клик по сердечку не дёргал рефетч всего списка — кэш и так правильно пропатчен в `onQueryStarted`.
 
 ---
 

@@ -74,10 +74,7 @@ export const productsApi = createApi({
 
 		setLikeProduct: builder.mutation<SetLikeResponse, Pick<Product, 'id'>>({
 			query: ({ id }) => ({ url: `/products/${id}/likes`, method: 'PUT' }),
-			invalidatesTags: (res) => [
-				{ type: 'Products', id: 'list' },
-				{ type: 'Products', id: res?.like.productId },
-			],
+			invalidatesTags: (res) => [{ type: 'Products', id: res?.like.productId }],
 			onQueryStarted: ({ id }, ctx) =>
 				applyOptimisticLike(ctx, id, (likes, userId) =>
 					likes.some((l) => l.userId === userId)
@@ -88,10 +85,7 @@ export const productsApi = createApi({
 
 		deleteLikeProduct: builder.mutation<DeleteLikeResponse, Pick<Product, 'id'>>({
 			query: ({ id }) => ({ url: `/products/${id}/likes`, method: 'DELETE' }),
-			invalidatesTags: (res) => [
-				{ type: 'Products', id: 'list' },
-				{ type: 'Products', id: res?.product.productId },
-			],
+			invalidatesTags: (res) => [{ type: 'Products', id: res?.product.productId }],
 			onQueryStarted: ({ id }, ctx) =>
 				applyOptimisticLike(ctx, id, (likes, userId) => likes.filter((l) => l.userId !== userId)),
 		}),

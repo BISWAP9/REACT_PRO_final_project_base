@@ -1,18 +1,15 @@
 import { Alert, Stack } from '@mui/material'
 import { memo, useCallback, useLayoutEffect, useRef } from 'react'
 import { Loader } from '@/shared/ui/Loader'
-import { productsActions, productsSelectors } from '@/shared/store/slices/products'
-import { useAppDispatch, useAppSelector } from '@/shared/store/utils'
-import { useProducts } from '@/features/products/model/hooks/useProducts'
+import { productsActions } from '@/shared/store/slices/products'
+import { useAppDispatch } from '@/shared/store/utils'
+import { useLoadMoreState } from '@/features/products/model/hooks/useLoadMoreState'
 
 export const LoadMore = memo(() => {
 	const ref = useRef<HTMLDivElement>(null)
 	const dispatch = useAppDispatch()
 
-	const { products, isFetching, productsCount } = useProducts()
-	const page = useAppSelector(productsSelectors.getPage)
-
-	const isEndOfList = products.length >= productsCount
+	const { isFetching, hasProducts, isEndOfList, page } = useLoadMoreState()
 
 	const fetchMoreProducts = useCallback(() => {
 		if (!isEndOfList && !isFetching) {
@@ -23,7 +20,7 @@ export const LoadMore = memo(() => {
 	useLayoutEffect(() => {
 		let observer: IntersectionObserver | undefined
 
-		if (!isEndOfList && products.length) {
+		if (!isEndOfList && hasProducts) {
 			observer = new IntersectionObserver(
 				(entries) => {
 					if (entries[0].isIntersecting) {
@@ -38,7 +35,7 @@ export const LoadMore = memo(() => {
 		return () => {
 			observer?.disconnect()
 		}
-	}, [fetchMoreProducts, isEndOfList, products.length])
+	}, [fetchMoreProducts, isEndOfList, hasProducts])
 
 	return (
 		<Stack ref={ref} direction='row' justifyContent='center' alignItems='center' sx={{ my: 5 }}>
